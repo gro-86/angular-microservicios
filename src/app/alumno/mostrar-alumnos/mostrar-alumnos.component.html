@@ -1,0 +1,63 @@
+<h1>Alumnos</h1>
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Edad</th>
+          <th>Email</th>
+          <th>Fecha</th>
+          <th>Actualizar</th>
+          <th>Borrar</th>
+        </tr>
+    </thead>
+    <tbody>
+      <!--Bucles con ngFor-->
+      <tr *ngFor="let alumno of alumnos | paginate: { itemsPerPage: alumnosPagina, currentPage: paginaActual }">
+        <td>{{alumno.nombre}}</td>
+        <td>{{alumno.apellido}}</td>
+        <td>{{alumno.edad}}</td>
+        <td>{{alumno.email}}</td>
+        <td>{{alumno.creadoEn | date:'dd/MM/yyyy'}}</td> <!--Pipes = Convierte fecha a otro formato-->
+        <td><button (click)="actualizarAlumno(alumno.id)" class="btn btn-success">Actualizar</button></td>
+        <td><button class="btn btn-danger btn-sm" type="button" (click)="borrarAlumno(alumno.id,alumno.nombre)">Borrar</button> </td>    
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="btn btn-default btn-block">
+  <button (click)="crearAlumno()" class="btn btn-primary">Crear</button>
+</div>
+
+<div class="container d-flex justify-content-between align-items-center">
+ <!-- <div class="pagination-lg">
+    <pagination-controls
+      class="pagination my-pagination"
+      (pageChange)="paginaCambiada($event)"
+      (previousPage)="tomarAccion('anterior')"
+      (nextPage)="tomarAccion('siguiente')"
+      (pageLast)="tomarAccion('ultimo')"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+      lastLabel="Último">
+    </pagination-controls>
+  </div> 
+<!--
+  <div class="form-group">
+    <label for="alumnosPorPagina">Número de alumnos por página:</label>
+    <select id="alumnosPorPagina" [(ngModel)]="alumnosPagina" (change)="cambiarAlumnosPorPagina()" class="form-control">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <!-- Agrega más opciones según tus necesidades 
+    </select> 
+  </div> -->
+</div>
+
+
+
+

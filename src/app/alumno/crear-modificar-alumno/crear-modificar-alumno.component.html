@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="container">
+    <div>
+      <h1>{{titulo}}</h1>
+    </div>
+    <form (ngSubmit)="!alumnoForm.invalid && (modificado ? actualizarAlumno() : crearAlumno())" #alumnoForm="ngForm">
+      <fieldset class="form-group">
+        <label>Nombre</label>
+        <input type="text" #nombreRef="ngModel" [(ngModel)]= "alumno.nombre" name="nombre" minlength="5" required="required" class="form-control" [class.is-invalid]="alumnoForm.submitted && nombreRef.invalid">
+        <div class="invalid-feedback" *ngIf="alumnoForm.submitted && nombreRef.invalid">Introduzca al menos 5 caracteres en el nombre</div>
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Apellido</label>
+        <input type="text" #apellidoRef="ngModel" [(ngModel)]= "alumno.apellido" name="apellido" minlength="5" required="required" class="form-control" [class.is-invalid]="alumnoForm.submitted && apellidoRef.invalid">
+        <div class="invalid-feedback" *ngIf="alumnoForm.submitted && apellidoRef.invalid">Introduzca al menos 5 caracteres en el apellido</div>
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Edad</label>
+        <input type="number" #edadRef="ngModel" [(ngModel)]= "alumno.edad" name="edad" min="18" required="required" class="form-control" [class.is-invalid]="alumnoForm.submitted && edadRef.invalid">
+        <div class="invalid-feedback" *ngIf="alumnoForm.submitted && edadRef.invalid">Introduzca una edad mayor de 18 años</div>
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Email</label>
+        <input type="email" #emailRef="ngModel" [(ngModel)]= "alumno.email"  name="email" required="required" class="form-control" [class.is-invalid]="alumnoForm.submitted && emailRef.invalid">
+        <div class="invalid-feedback" *ngIf="alumnoForm.submitted && emailRef.invalid">Introduzca un email válido</div>
+      </fieldset>
+      <div>
+        <button type="submit" class="btn btn-success">{{nombreBoton}}</button>
+      </div>   
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
